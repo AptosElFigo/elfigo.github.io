@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Figo – Guía de Actividades</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Lato:wght@300;400;700&display=swap');
+
+  :root {
+    --verde: #2a6b5e;
+    --verde-claro: #4a9e8e;
+    --arena: #f5f0e8;
+    --crema: #faf7f2;
+    --marron: #6b4c3b;
+    --marron-claro: #c8a98a;
+    --texto: #3a3028;
+    --texto-suave: #6b5d52;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* PORTADA */
+  .portada {
+    background: var(--verde);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .portada::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(74,158,142,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(42,107,94,0.5) 0%, transparent 50%);
+  }
+
+  .portada-logo {
+    position: relative;
+    border: 3px solid rgba(255,255,255,0.4);
+    padding: 20px 30px;
+    margin-bottom: 50px;
+    text-align: center;
+  }
+
+  .portada-logo .marca {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 6px;
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .portada-logo .submarca {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .portada-titulo {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+  .portada-titulo h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .portada-titulo .subtitulo {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 40px;
+  }
+
+  .portada-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--marron-claro);
+    margin: 0 auto 40px;
+  }
+
+  .portada-intro {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    max-width: 500px;
+    line-height: 1.8;
+  }
+
+  /* BIENVENIDA */
+  .bienvenida {
+    padding: 70px 60px;
+    background: var(--arena);
+    page-break-after: always;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .bienvenida-texto { flex: 1; }
+
+  .bienvenida-imagen {
+    flex: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  }
+
+  .bienvenida-imagen img { width: 100%; display: block; }
+
+  /* PÁGINAS INTERIORES */
+  .pagina {
+    padding: 60px;
+    page-break-after: always;
+    background: var(--crema);
+  }
+
+  .pagina:nth-child(even) { background: var(--arena); }
+
+  /* TÍTULOS DE SECCIÓN */
+  .seccion-titulo {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 38px;
+    font-weight: 400;
+    color: var(--verde);
+    margin-bottom: 8px;
+  }
+
+  .seccion-linea {
+    width: 50px;
+    height: 3px;
+    background: var(--marron-claro);
+    margin-bottom: 30px;
+  }
+
+  .seccion-intro {
+    font-size: 14px;
+    color: var(--texto-suave);
+    font-style: italic;
+    margin-bottom: 35px;
+    max-width: 600px;
+  }
+
+  /* ACTIVIDADES - layout texto + foto */
+  .actividad {
+    display: flex;
+    gap: 35px;
+    margin-bottom: 45px;
+    align-items: flex-start;
+  }
+
+  .actividad:nth-child(even) { flex-direction: row-reverse; }
+
+  .actividad-texto { flex: 1.4; }
+  .actividad-foto {
+    flex: 1;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  }
+  .actividad-foto img { width: 100%; display: block; height: 200px; object-fit: cover; }
+
+  .actividad h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--marron);
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .actividad p {
+    color: var(--texto-suave);
+    font-size: 13px;
+    line-height: 1.75;
+    margin-bottom: 8px;
+  }
+
+  .actividad a {
+    color: var(--verde-claro);
+    font-size: 12px;
+    text-decoration: none;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--verde);
+    color: white;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+  }
+
+  /* PLAYAS - grid */
+  .playas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .playa-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+  }
+
+  .playa-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
+
+  .playa-card-body { padding: 18px 20px; }
+
+  .playa-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--marron);
+    margin-bottom: 8px;
+  }
+
+  .playa-card p { font-size: 12.5px; color: var(--texto-suave); line-height: 1.65; }
+
+  /* PUEBLOS - grid fotos */
+  .pueblos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .pueblo-item {
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  }
+
+  .pueblo-item img { width: 100%; height: 150px; object-fit: cover; display: block; }
+
+  .pueblo-item .nombre {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(42,107,94,0.85));
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 15px;
+    padding: 20px 12px 10px;
+    text-align: center;
+  }
+
+  /* RESTAURANTES */
+  .restaurantes-lista {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .restaurante-item {
+    background: white;
+    padding: 16px 20px;
+    border-left: 3px solid var(--verde-claro);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .restaurante-item h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--marron);
+    margin-bottom: 4px;
+  }
+
+  .restaurante-item p { font-size: 12px; color: var(--texto-suave); }
+
+  .restaurante-item.evitar { border-left-color: #c0392b; opacity: 0.7; }
+
+  /* PLANES DEL DÍA */
+  .plan-dia {
+    background: white;
+    border-radius: 6px;
+    padding: 25px 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.07);
+    border-top: 4px solid var(--verde-claro);
+  }
+
+  .plan-dia h3 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--verde);
+    margin-bottom: 10px;
+  }
+
+  .plan-dia p { font-size: 13px; color: var(--texto-suave); line-height: 1.75; }
+
+  /* ÍNDICE */
+  .indice {
+    padding: 60px;
+    background: var(--verde);
+    color: white;
+    page-break-after: always;
+  }
+
+  .indice h2 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 36px;
+    margin-bottom: 40px;
+    opacity: 0.9;
+  }
+
+  .indice-items { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+  .indice-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+  }
+
+  .indice-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--marron-claro);
+    line-height: 1;
+  }
+
+  .indice-label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* SEPARADOR DECORATIVO */
+  .deco-sep {
+    text-align: center;
+    color: var(--marron-claro);
+    font-size: 20px;
+    margin: 20px 0 30px;
+    letter-spacing: 8px;
+  }
+
+  /* NOTA ESPECIAL */
+  .nota {
+    background: var(--verde);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 4px;
+    margin: 20px 0;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  /* PRINT */
+  @media print {
+    .portada { min-height: 100vh; }
+    body { font-size: 12px; }
+    .pagina { padding: 45px 50px; }
+    .bienvenida { padding: 50px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<div class="portada">
+  <div class="portada-logo">
+    <div class="marca">El Figo</div>
+    <div class="submarca">Apartamentos Turísticos · Asturias</div>
+  </div>
+  <div class="portada-titulo">
+    <h1>Actividades, excursiones<br>y planes para todo el día</h1>
+    <div class="portada-divider"></div>
+    <p class="subtitulo">Una guía con todo nuestro cariño</p>
+    <p class="portada-intro">Compartimos aquí todo lo que más nos gusta de este rincón de Asturias. Esperamos que lo disfrutéis tanto como nosotros.</p>
+  </div>
+</div>
+
+<!-- ÍNDICE -->
+<div class="indice">
+  <h2>¿Qué encontrarás aquí?</h2>
+  <div class="indice-items">
+    <div class="indice-item">
+      <div class="indice-num">01</div>
+      <div class="indice-label">Actividades en plena naturaleza</div>
+    </div>
+    <div class="indice-item">
+      <div class="indice-num">02</div>
+      <div class="indice-label">Actividades culturales</div>
+    </div>
+    <div class="indice-item">
+      <div class="indice-num">03</div>
+      <div class="indice-label">Playas favoritas</div>
+    </div>
+    <div class="indice-item">
+      <div class="indice-num">04</div>
+      <div class="indice-label">Pueblos con encanto</div>
+    </div>
+    <div class="indice-item">
+      <div class="indice-num">05</div>
+      <div class="indice-label">Dónde comer bien</div>
+    </div>
+    <div class="indice-item">
+      <div class="indice-num">06</div>
+      <div class="indice-label">Planes para todo el día</div>
+    </div>
+  </div>
+</div>
+
+<!-- 01 NATURALEZA -->
+<div class="pagina">
+  <div class="seccion-titulo">Actividades en plena naturaleza</div>
+  <div class="seccion-linea"></div>
+  <p class="seccion-intro">La naturaleza aquí es protagonista. Estas son nuestras rutas y lugares favoritos, muchos de ellos perfectos para disfrutar en familia.</p>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Galicia · 15 min</span>
+      <h3>Playa de las Catedrales</h3>
+      <p>A un cuarto de hora de Tapia se encuentra uno de los espectáculos naturales más impresionantes de toda la costa atlántica. Sus arcos de roca han conquistado miles de corazones, y aunque la masificación ha obligado a regular las visitas, la magia sigue intacta.</p>
+      <p><strong>Importante:</strong> Del 1 de julio al 30 de septiembre es necesaria autorización gratuita previa. Resérvala en <a href="[http://ascatedrais.xunta.es">ascatedrais.xunta.es</a]http://ascatedrais.xunta.es">ascatedrais.xunta.es</a>. Llega hora y media antes de la bajamar para disfrutar de todo el recorrido.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Playa_de_las_catedrales.jpg/640px-Playa_de_las_catedrales.jpg" alt="Playa de las Catedrales">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Reserva Natural</span>
+      <h3>Playa de Barayo</h3>
+      <p>Si buscas una playa de las de verdad, salvaje y sin artificios, Barayo es tu sitio. Catalogada como Reserva Natural Parcial de la Biosfera, llegar hasta ella a pie ya es toda una aventura entre dunas, matorrales y marismas. Admite nudismo y no tiene servicios, que es precisamente su encanto.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Playa_de_Barayo.jpg/640px-Playa_de_Barayo.jpg" alt="Playa de Barayo">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Fácil · Apta niños · ~1h 20min</span>
+      <h3>Ruta cascada Seimeira</h3>
+      <p>Una de las muchas joyas escondidas en la zona de montaña de Los Oscos. La ruta parte desde la aldea de Pumares y discurre entre bosques autóctonos y aldeas abandonadas que parecen sacadas de un cuento, hasta llegar a una cascada que te dejará sin palabras. Fácil y apta para los más pequeños.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Cascada_de_Seimeira.jpg/640px-Cascada_de_Seimeira.jpg" alt="Cascada Seimeira">
+    </div>
+  </div>
+</div>
+
+<!-- 01b NATURALEZA continuación -->
+<div class="pagina">
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Historia · Reserva previa · 3€</span>
+      <h3>Cuevas de Andía</h3>
+      <p>Muy cerca de Tapia y en plena naturaleza, estas cuevas guardan los restos de unas minas del siglo I d.C. La visita guiada, entre formas caprichosas y vegetación exuberante, es una experiencia que fascina a los niños. Reserva obligatoria. Tlf: 985 478 601 / 619 368 169.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://live.staticflickr.com/3892/14684999498_b48c8e0f5d_b.jpg" alt="Cuevas de Andía">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Espectacular · Adaptable</span>
+      <h3>Ruta Hoces del Esva</h3>
+      <p>Una ruta que nos encanta por su versatilidad: puedes hacerla larga y circular o más corta en ida y vuelta. En ambos casos discurres por las imponentes gargantas del río Esva, con paisajes que quitan el aliento. Una de nuestras favoritas para los días que apetece caminar de verdad.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://live.staticflickr.com/3928/15283898981_7e97b13c2c_b.jpg" alt="Hoces del Esva">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Nuestra favorita · &lt;2h · Apta niños</span>
+      <h3>Ruta cascada del Cioyo</h3>
+      <p>Si tuviéramos que elegir una sola ruta, probablemente sería esta. Un bosque mágico y autóctono te lleva de la mano hasta unas cascadas solitarias donde el tiempo parece detenerse. Duración inferior a dos horas y apta para niños con algo de precaución.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Cascada_del_Cioyo.jpg/640px-Cascada_del_Cioyo.jpg" alt="Cascada del Cioyo">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Plana y fácil · Vistas increíbles</span>
+      <h3>Senda del Cabo Busto</h3>
+      <p>Una ruta cómoda y plana que discurre por la zona de acantilados con más altura de Asturias. Las vistas son absolutamente espectaculares. Perfecta para acabar el día o para quienes buscan paisaje sin esfuerzo.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Cabo_Busto.jpg/640px-Cabo_Busto.jpg" alt="Cabo Busto">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Villayón · Familiar</span>
+      <h3>Cascadas de Oneta</h3>
+      <p>Un conjunto de tres cascadas situadas en el Ayuntamiento de Villayón, perfectas para un día tranquilo con toda la familia. El entorno natural que las rodea es una delicia en cualquier época del año.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Cascada_de_oneta.jpg" alt="Cascadas de Oneta">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Costa virgen · Ruta costera desde Tapia</span>
+      <h3>Los Lagos de Silva</h3>
+      <p>Situados a escasos metros de una costa virgen, estos lagos son en realidad los restos de una antigua explotación aurífera romana reconvertidos en un enclave de altísimo valor ambiental. Se puede llegar desde Tapia a pie por la ruta costera. En los últimos años, la lucha vecinal de la Plataforma ORO NO para proteger la zona de nuevas explotaciones mineras ha dado mucho que hablar y merece conocerse.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Lagos_de_Silva_2.jpg/640px-Lagos_de_Silva_2.jpg" alt="Lagos de Silva">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">Galicia · 1h 30min</span>
+      <h3>Estaca de Bares</h3>
+      <p>Vale la pena madrugar y recorrer hora y media en coche para llegar al punto más septentrional de la Península Ibérica. Sus acantilados y la fuerza del Mar Cantábrico son una experiencia que se queda grabada. Por los alrededores, pequeños pueblos pesqueros como el Puerto de Bares tienen un encanto especial.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Estaca_de_Bares.jpg/640px-Estaca_de_Bares.jpg" alt="Estaca de Bares">
+    </div>
+  </div>
+</div>
+
+<!-- 02 CULTURA -->
+<div class="pagina">
+  <div class="seccion-titulo">Actividades culturales</div>
+  <div class="seccion-linea"></div>
+  <p class="seccion-intro">Historia, artesanía y tradición popular. La cultura de esta tierra tiene mucho que contar.</p>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">S. IV a.C. · Visitas guiadas verano · 3€</span>
+      <h3>Castro de Coaña</h3>
+      <p>Uno de los castros prerromanos mejor conservados de toda la Península. Con su aula de interpretación y las visitas guiadas de julio y agosto (a 3€, mitad para niños), es una visita que combina historia y paseo al aire libre de manera excelente. <strong>Los miércoles la entrada es gratuita.</strong></p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Castro_de_Coa%C3%B1a.jpg/640px-Castro_de_Coa%C3%B1a.jpg" alt="Castro de Coaña">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">45 km · Artesanía del hierro</span>
+      <h3>Taramundi y entorno</h3>
+      <p>A 45 km de Tapia, este concejo es famoso mundialmente por su tradición en la artesanía del hierro, con fraguas que funcionan gracias a ingenios hidráulicos casi medievales. En los alrededores, el conjunto etnográfico de Os Teixois (<a href="[http://www.osteixois.com">osteixois.com</a]http://www.osteixois.com">osteixois.com</a>) y el museo de molinos Mazonovo (<a href="[http://www.mazonovo.es">mazonovo.es</a]http://www.mazonovo.es">mazonovo.es</a>) son visitas imprescindibles.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Taramundi_molino.jpg/640px-Taramundi_molino.jpg" alt="Taramundi">
+    </div>
+  </div>
+
+  <div class="actividad">
+    <div class="actividad-texto">
+      <span class="tag">45 min · Visita guiada · 2€</span>
+      <h3>Casa de la Apicultura de Boal</h3>
+      <p>En plena montaña, a 45 minutos de Tapia, este singular centro dedicado a la apicultura ofrece visitas guiadas fascinantes sobre la historia y técnicas de las abejas. Precio: 2€. <strong>Los martes, entrada gratuita.</strong> Tlf: 985 620 629.</p>
+    </div>
+    <div class="actividad-foto">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Boal_casa_concejo.jpg/640px-Boal_casa_concejo.jpg" alt="Boal">
+    </div>
+  </div>
+
+  <div class="nota">
+    🎉 <strong>Las fiestas de "prao":</strong> En julio y agosto, prácticamente todos los pueblos de la zona celebran sus fiestas, muchas de ellas en campos abiertos donde la gente se reúne a comer, beber y bailar. El 8 de septiembre, en Porcía (a 5 minutos de Tapia), se celebra una de las más importantes de Asturias con motivo del Día de Asturias. Consulta la agenda completa en <a href="http://www.parquehistorico.org/agenda.php" style="color:var(--marron-claro)">parquehistorico.org</a>.
+  </div>
+</div>
+
+<!-- 03 PLAYAS -->
+<div class="pagina">
+  <div class="seccion-titulo">Nuestras playas favoritas</div>
+  <div class="seccion-linea"></div>
+  <p class="seccion-intro">Las más cercanas y las que más nos gustan. Desde arenales familiares hasta calas salvajes de canto rodado.</p>
+
+  <div class="playas-grid">
+    <div class="playa-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Playa_de_Porcia.jpg/640px-Playa_de_Porcia.jpg" alt="Playa de Porcía">
+      <div class="playa-card-body">
+        <h3>Playa de Porcía</h3>
+        <p>Arena cercana a Tapia, muy protegida del viento nordeste. Ideal con marea baja (al subir se queda sin arena). En verano: canoas, pádel y escuela de aventura con kayaks en familia. <a href="https://oukas.es/">oukas.es</a></p>
+      </div>
+    </div>
+    <div class="playa-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Playa_de_Pe%C3%B1arronda.jpg/640px-Playa_de_Pe%C3%B1arronda.jpg" alt="Playa de Peñarronda">
+      <div class="playa-card-body">
+        <h3>Playa de Peñarronda</h3>
+        <p>El arenal más grande de la zona. Perfecta para familias y para aprender a surfear en la escuela HOLA OLA. Grandes aparcamientos y varios restaurantes (recomendamos el Bar Lúa). <a href="http://www.holaola.com/web/escuela-de-surf/">holaola.com</a></p>
+      </div>
+    </div>
+    <div class="playa-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Playa_de_Tapia_de_Casariego.jpg/640px-Playa_de_Tapia_de_Casariego.jpg" alt="Playa de Tapia">
+      <div class="playa-card-body">
+        <h3>Playa de Tapia</h3>
+        <p>Preciosa playa en el corazón del pueblo. Ha perdido arena en los últimos años, así que mejor visitarla con marea baja. Todos los servicios y varios bares-restaurantes a mano.</p>
+      </div>
+    </div>
+    <div class="playa-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Frexulfe.jpg/640px-Frexulfe.jpg" alt="Playa de Frexulfe">
+      <div class="playa-card-body">
+        <h3>Playa de Frexulfe</h3>
+        <p>Una de las más hermosas y salvajes de la zona, con su característica arena negra. Hay un bar-restaurante y aparcamiento. <strong>Atención a las corrientes</strong> si os bañáis.</p>
+      </div>
+    </div>
+    <div class="playa-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Playa_de_Barayo_%282%29.jpg/640px-Playa_de_Barayo_%282%29.jpg" alt="Playa de Barayo">
+      <div class="playa-card-body">
+        <h3>Playa de Barayo</h3>
+        <p>Reserva Natural. La playa más salvaje que puedas imaginar, con dunas, marismas y silencio. Sin servicios, solo naturaleza pura. Nudismo permitido.</p>
+      </div>
+    </div>
+    <div class="playa-card">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Viavelez.jpg/640px-Viavelez.jpg" alt="Playa de Pormenande">
+      <div class="playa-card-body">
+        <h3>Playa de Pormenande</h3>
+        <p>Cerca de Viavélez, esta preciosa playa de cantos rodados es ideal para un chapuzón refrescante. Pequeño bar de playa. Y recuerda que hay infinidad de calas secretas por descubrir...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 PUEBLOS -->
+<div class="pagina">
+  <div class="seccion-titulo">Pueblos con encanto</div>
+  <div class="seccion-linea"></div>
+  <p class="seccion-intro">Desde el puerto de Tapia hasta los pueblos pescadores de Galicia. Cada uno con su propia personalidad.</p>
+
+  <div class="pueblos-grid">
+    <div class="pueblo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Tapia_de_casariego.jpg/640px-Tapia_de_casariego.jpg" alt="Tapia de Casariego">
+      <div class="nombre">Tapia de Casariego</div>
+    </div>
+    <div class="pueblo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Puerto_de_Vega.jpg/640px-Puerto_de_Vega.jpg" alt="Puerto de Vega">
+      <div class="nombre">Puerto de Vega</div>
+    </div>
+    <div class="pueblo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Castropol.jpg/640px-Castropol.jpg" alt="Castropol">
+      <div class="nombre">Castropol</div>
+    </div>
+    <div class="pueblo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Ribadeo.jpg/640px-Ribadeo.jpg" alt="Ribadeo">
+      <div class="nombre">Ribadeo</div>
+    </div>
+    <div class="pueblo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Rinlo.jpg/640px-Rinlo.jpg" alt="Rinlo">
+      <div class="nombre">Rinlo</div>
+    </div>
+    <div class="pueblo-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Luarca_puerto.jpg/640px-Luarca_puerto.jpg" alt="Luarca">
+      <div class="nombre">Luarca</div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 RESTAURANTES -->
+<div class="pagina">
+  <div class="seccion-titulo">Dónde comer bien</div>
+  <div class="seccion-linea"></div>
+  <p class="seccion-intro">Nuestra selección personal, con el cariño de quien los ha visitado muchas veces.</p>
+
+  <div class="restaurantes-lista">
+    <div class="restaurante-item">
+      <h4>Casa Vicente</h4>
+      <p>Castropol</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>El Pilón</h4>
+      <p>Tapia</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>Nordestada</h4>
+      <p>Tapia</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>Regueiro</h4>
+      <p>Tox-Navia</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>La Marina</h4>
+      <p>Tapia</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>El Mesón del Puerto</h4>
+      <p>Tapia</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>Kraken</h4>
+      <p>Tapia</p>
+    </div>
+    <div class="restaurante-item">
+      <h4>A Menos Cuarto</h4>
+      <p>Tapia</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 30px;">
+    <p style="font-size: 12px; color: var(--texto-suave); margin-bottom: 10px; font-style: italic;">También os dejamos un consejo:</p>
+    <div class="restaurante-item evitar" style="display: inline-block;">
+      <h4>El Orrio (Tapia)</h4>
+      <p>Preferiblemente, a evitar</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 40px;">
+    <div class="seccion-titulo" style="font-size: 28px;">Recomendaciones especiales</div>
+    <div class="seccion-linea"></div>
+    <p style="font-size: 13px; color: var(--texto-suave); line-height: 1.8;">
+      Cuando visitéis <strong>Rinlo</strong> (junto a la Playa de las Catedrales): el arroz con lubrigante es famoso en sus restaurantes. <em>Reservad con antelación.</em><br><br>
+      En <strong>Ribadeo</strong>: Casa Villaronta tiene fama de servir el mejor pulpo a la gallega de Galicia. Está increíble. <em>Conviene reservar.</em><br><br>
+      En <strong>Taramundi</strong>: Los Arándanos es casi una obligación. Y en Vegado, en la carretera hacia Taramundi, encontraréis la Panadería Reguera con empanadas buenísimas.<br><br>
+      Tras las Hoces del Esva: <strong>Casa Obispo en Paredes</strong>, con platos de cocina asturiana auténtica y de gran calidad a muy buen precio.
+    </p>
+  </div>
+</div>
+
+<!-- 06 PLANES DEL DÍA -->
+<div class="pagina">
+  <div class="seccion-titulo">Planes para todo el día</div>
+  <div class="seccion-linea"></div>
+  <p class="seccion-intro">Porque los mejores días son los que combinan naturaleza, cultura y buena mesa. Aquí van nuestras rutas de día favoritas.</p>
+
+  <div class="plan-dia">
+    <h3>Día del Castro de Coaña</h3>
+    <p>Después de visitar el Castro, acercaos al puerto pesquero de <strong>Puerto de Vega</strong>, uno de los más pintorescos de Asturias, perfecto para comer pescado en el Restaurante La Marina o en Casa Consuelo (en el pueblo de Otur). Cerca de allí, la Playa de Frejulfe es salvaje y preciosa, y la Playa de Barayo es Reserva Natural.</p>
+  </div>
+
+  <div class="plan-dia">
+    <h3>Día de Taramundi</h3>
+    <p>Museos, fraguas y bosques increíbles. No os perdáis el pueblo de <strong>Os Teixois</strong>. Comer en Los Arándanos es casi obligatorio. Y si el día está despejado, a la vuelta parad a ver el atardecer en el Puerto de Tapia: pocas cosas hay más bonitas.</p>
+  </div>
+
+  <div class="plan-dia">
+    <h3>Día de la Playa de las Catedrales</h3>
+    <p>Combinad la visita a las Catedrales con una parada en el precioso pueblo de <strong>Rinlo</strong> para comer (el arroz con lubrigante es famoso, reservad). Después, en Ribadeo, <strong>Casa Villaronta</strong> para el pulpo a la gallega más famoso de Galicia.</p>
+  </div>
+
+  <div class="plan-dia">
+    <h3>Día de las Hoces del Esva</h3>
+    <p>Madrugad: hay 50 minutos de coche hasta el inicio de la ruta. Después de la caminata, <strong>Casa Obispo en Paredes</strong> os repondrá las fuerzas con cocina asturiana auténtica de gran calidad. De vuelta, haced la senda del <strong>Cabo Busto</strong> para rematar el día con unas vistas de escándalo.</p>
+  </div>
+
+  <div class="nota" style="margin-top: 30px;">
+    💚 <strong>Un último consejo:</strong> En esta zona la meteorología puede cambiar en horas. Os recomendamos tener siempre un plan alternativo bajo la manga y que os dejéis llevar: a veces los días grises son los más mágicos.
+  </div>
+</div>
+
+</body>
+</html>
